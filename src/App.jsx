@@ -8,7 +8,7 @@ import MovieCard from './MovieCard';
 
 
 const API_KEY = "fbdff94d"
-const API_URL = `http://www.omdbapi.com?apikey=${API_KEY}`
+const API_URL = `https://www.omdbapi.com?apikey=${API_KEY}`
 
 // const movie = {
 //   "Title": "No Time to Die",
