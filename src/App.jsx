@@ -11,13 +11,6 @@ import Footer from './Footer'
 const API_KEY = "fbdff94d"
 const API_URL = `https://www.omdbapi.com?apikey=${API_KEY}`
 
-// const movie = {
-//   "Title": "No Time to Die",
-//   "Year": "1992",
-//   "imdbID": "tt0103987",
-//   "Type": "movie",
-//   "Poster": "https://m.media-amazon.com/images/M/MV5BZWQxOTlmMTAtMzMzOS00NGQ5LWFmZTktM2U3ODY3NzBiYzFkXkEyXkFqcGdeQXVyMTk0MjQ3Nzk@._V1_SX300.jpg"
-// }
 
 function App() {
   const [movies, setMovies] = useState([]);
