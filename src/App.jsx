@@ -5,6 +5,7 @@ import './App.css'
 import searchIcon from './search.svg'
 import { SearchIcon } from 'lucide-react'
 import MovieCard from './MovieCard';
+import Footer from './Footer'
 
 
 const API_KEY = "fbdff94d"
@@ -23,23 +24,28 @@ function App() {
   const [searchTerm, setSearchTerm] = useState('spiderman')
 
   const searchMovies = async(title) => {
-    const response = await fetch(`${API_URL}&s=${title}`);
-    const data = await response.json()
-    console.log(data.Search)
-    setMovies(data.Search)
+    if(!title) return;
+    try {
+      const response = await fetch(`${API_URL}&s=${title}`) || [];
+      const data = await response.json()
+      console.log(data.Search)
+      setMovies(data.Search || [])
+    } catch(error) {
+      console.error('Failed to fetch movies:', error)
+    }
+    
   }
 
   useEffect(() => {
-    searchMovies('Spiderman')
-  }, [])
+    searchMovies(searchTerm)
+  }, []);
 
-  searchMovies()
 
   return (
     <div className="app">
-      <h1>MovieLand</h1>
+      <h1 className=''>MovieLand</h1>
       <div className="search">
-        <input 
+        <input type='text'
         placeholder='Search for Movies' 
         value={searchTerm} 
         onChange={(e) => setSearchTerm(e.target.value)}
@@ -54,8 +60,8 @@ function App() {
       {movies?.length > 0
         ? (
           <div className="container">
-            {movies.map((movie, index) => (
-              <MovieCard movie={movie} key={index} />
+            {movies.map((movie) => (
+              <MovieCard movie={movie} key={moveBy.imdbID} />
           ))}
           </div>
         ) : (
@@ -64,8 +70,12 @@ function App() {
           </div>
         )}
 
+        <Footer/>
+
     </div>
+
   );
 }
+
 
 export default App;
